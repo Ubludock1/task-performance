@@ -1,0 +1,48 @@
+Изменения в index.html
+Было :
+  <body>
+    <script src="stats.js"></script>
+    <div class="contacts">
+      <div class="stickyHeader">0</div>
+    </div>
+    <script src="contacts.js"></script>
+  </body>
+Стало :
+<body>
+    <div class="contacts">
+      <div class="stickyHeader">0</div>
+    </div>
+    <script async src="stats.js"></script>
+    <script defer src="contacts.js"></script>
+  </body>
+
+Изменения в styles.css
+В contacts добавил will-change: scroll-position;
+В stickyHeader дбавил will-change: contents;
+
+Изменения в concats.js
+Было:
+const contacts = document.getElementsByClassName("contacts")[0];
+const stickyHeader = document.getElementsByClassName("stickyHeader")[0];
+
+Стало:
+const c=document.querySelector(".contacts");
+const s=document.querySelector(".stickyHeader");
+
+Было :
+contacts.addEventListener("scroll", (e) => {
+  const items = Array.from(contacts.getElementsByClassName("contact"));
+  const itemOffsets = items.map((item) => item.offsetTop);
+  const topItemIndex = itemOffsets.findIndex(
+    (offset) => contacts.scrollTop - offset <= -18
+  );
+  if (topItemIndex !== -1) {
+    stickyHeader.textContent = items[topItemIndex].textContent;
+  }
+});
+
+Стало:
+c.addEventListener("scroll", (e) => {
+    const t = i.find((o) => c.scrollTop - o.offsetTop <= -18);
+    if (t != -1) {s.textContent = t.textContent;}
+});
