@@ -8,10 +8,10 @@ function addContacts() {
         d.classList.add("contact");
         c.appendChild(d);
     }
-    i=Array.from(c.querySelectorAll(".contact"));
+    i=c.querySelectorAll(".contact");
 };
 c.addEventListener("scroll", (e) => {
-    const t = i.find((o) => c.scrollTop - o.offsetTop <= -18);
-    if (t != -1) {s.textContent = t.textContent;}
+    const index = c.scrollTop /18;
+    s.textContent = i[index].textContent;
 });
 addContacts();
